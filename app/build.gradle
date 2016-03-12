@@ -19,6 +19,9 @@ model {
             proguardFiles.add(file('proguard-android.txt'))
         }
     }
+    android.ndk {
+        moduleName = "weatherboard-jni"
+    }
 }
 
 dependencies {
