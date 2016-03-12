@@ -3,7 +3,12 @@ LOG_TO_ANDROID_LOGCAT := true
 LOCAL_PATH:= $(call my-dir)
 include $(CLEAR_VARS)
 
-LOCAL_SRC_FILES:= weather_board.c, bme280.c, bme280-i2c.c, si1132.c, si702x.c, bmp180.c
+LOCAL_SRC_FILES:= bmp180.c \
+                  bme280.c \
+                  bme280-i2c.c \
+                  si1132.c \
+                  si702x.c\
+                  weather_board.c
 
 LOCAL_MODULE:=weatherboard
 
