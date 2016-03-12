@@ -11,7 +11,9 @@
     tools:context="com.dpott197.weatherjni.MainActivity">
 
     <TextView
+        android:id="@+id/activity_main_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!"/>
+
 </RelativeLayout>
