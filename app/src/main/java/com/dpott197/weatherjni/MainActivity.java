@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
             start();
         }
     };
+    private TextView mUltravioletTextView;
+    private TextView mInfraredTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
         mHumidityTextView = (TextView) findViewById(R.id.activity_main_humidityTextView);
         mPressureTextView = (TextView) findViewById(R.id.activity_main_pressureTextView);
         mTempTextView = (TextView) findViewById(R.id.activity_main_tempTextView);
+
+        mInfraredTextView = (TextView) findViewById(R.id.activity_main_infraredTextView);
+        mUltravioletTextView = (TextView) findViewById(R.id.activity_main_ultravioletTextView);
         mVisibleTextView = (TextView) findViewById(R.id.activity_main_visibleTextView);
     }
 
@@ -72,6 +77,14 @@ public class MainActivity extends AppCompatActivity {
         // FIXME
         openLightDevice();
 
+        if (mInfraredTextView != null) {
+            mInfraredTextView.setText(String.format(String.valueOf(getInfrared())));
+        }
+
+        if (mUltravioletTextView != null) {
+            mUltravioletTextView.setText(String.format(String.valueOf(getUV())));
+        }
+
         if (mVisibleTextView != null) {
             mVisibleTextView.setText(String.format(String.valueOf(getVisible())));
         }
@@ -87,6 +100,9 @@ public class MainActivity extends AppCompatActivity {
     public native double getHumidity();
     public native double getPressure();
     public native double getTemp();
+
+    public native double getInfrared();
+    public native double getUV();
     public native double getVisible();
 
 }

@@ -1,9 +1,6 @@
 #include <jni.h>
-#include <stdio.h>
 #include "bme280-i2c.h"
 #include "si1132.h"
-#include "si702x.h"
-#include "bmp180.h"
 
 static int pressure;
 static int temperature;
@@ -46,7 +43,20 @@ Java_com_dpott197_weatherjni_MainActivity_getTemp(JNIEnv *env, jobject instance)
     return (double) temperature / 100.0;
 }
 
+// Electromagnetic
+
+JNIEXPORT jdouble JNICALL
+Java_com_dpott197_weatherjni_MainActivity_getInfrared(JNIEnv *env, jobject instance) {
+    return Si1132_readIR();
+}
+
+JNIEXPORT jdouble JNICALL
+Java_com_dpott197_weatherjni_MainActivity_getUV(JNIEnv *env, jobject instance) {
+    return Si1132_readUV() / 100.0;
+}
+
 JNIEXPORT jdouble JNICALL
 Java_com_dpott197_weatherjni_MainActivity_getVisible(JNIEnv *env, jobject instance) {
     return Si1132_readVisible();
 }
+
