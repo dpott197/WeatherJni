@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         onCreateView();
+        WeatherUtils.forcePermission();
         mRefreshTimer.start();
     }
 
@@ -96,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
     public native int openDevice();
     public native int openLightDevice();
+
     public native double getAltitude();
     public native double getHumidity();
     public native double getPressure();
