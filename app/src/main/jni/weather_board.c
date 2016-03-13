@@ -36,20 +36,17 @@ int main(int argc, char **argv) {
     printf("Visible : %.0f Lux\n", Si1132_readVisible());
     printf("IR : %.0f Lux\n", Si1132_readIR());
     if (WBVersion == 2) {
-        bme280_read_pressure_temperature_humidity(
-                &pressure, &temperature, &humidity);
+        bme280_read_pressure_temperature_humidity(&pressure, &temperature, &humidity);
         printf("======== bme280 ========\n");
         printf("temperature : %.2lf 'C\n", (double) temperature / 100.0);
         printf("humidity : %.2lf %%\n", (double) humidity / 1024.0);
         printf("pressure : %.2lf hPa\n", (double) pressure / 100.0);
-        printf("altitude : %f m\n", bme280_readAltitude(pressure,
-                                                        SEALEVELPRESSURE_HPA));
+        printf("altitude : %f m\n", bme280_readAltitude(pressure, SEALEVELPRESSURE_HPA));
     } else {
         printf("======== bmp180 ========\n");
         printf("temperature : %.2f 'C\n", BMP180_readTemperature());
         printf("pressure : %.2f hPa\n", BMP180_readPressure() / 100);
-        printf("Altitude : %.2f meter\n",
-               BMP180_readAltitude(SEALEVELPRESSURE_HPA));
+        printf("Altitude : %.2f meter\n", BMP180_readAltitude(SEALEVELPRESSURE_HPA));
         printf("======== si7020 ========\n");
         printf("temperature : %.2f 'C\n", Si702x_readTemperature());
         printf("humidity : %.2f %%\n", Si702x_readHumidity());
