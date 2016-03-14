@@ -7,10 +7,15 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    private boolean mIsDeviceOpen;
+
     private TextView mAltitudeTextView;
-    private TextView mTempTextView;
     private TextView mHumidityTextView;
+    private TextView mInfraredTextView;
     private TextView mPressureTextView;
+    private TextView mTempTextView;
+    private TextView mUltravioletTextView;
     private TextView mVisibleTextView;
 
     private CountDownTimer mRefreshTimer = new CountDownTimer(Integer.MAX_VALUE, 1000) {
@@ -24,15 +29,11 @@ public class MainActivity extends AppCompatActivity {
             start();
         }
     };
-    private TextView mUltravioletTextView;
-    private TextView mInfraredTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         onCreateView();
-        WeatherUtils.forcePermission();
-        mRefreshTimer.start();
     }
 
     private void onCreateView() {
@@ -51,11 +52,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        WeatherUtils.forcePermission();
+
+        mIsDeviceOpen = openDevice() < 0;
+        openLightDevice();
+
         updateUI();
+        mRefreshTimer.start();
     }
 
     private void updateUI() {
-        if (openDevice() < 0) {
+        if (mIsDeviceOpen) {
             return;
         }
 
@@ -74,9 +81,6 @@ public class MainActivity extends AppCompatActivity {
         if (mTempTextView != null) {
             mTempTextView.setText(String.format(String.valueOf(getTemp())));
         }
-
-        // FIXME
-        openLightDevice();
 
         if (mInfraredTextView != null) {
             mInfraredTextView.setText(String.format(String.valueOf(getInfrared())));
