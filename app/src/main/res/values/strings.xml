@@ -5,7 +5,7 @@
     <string name="humidity">Humidity (%)</string>
     <string name="infrared">Infrared (lux)</string>
     <string name="pressure">Pressure (hPa)</string>
-    <string name="temperature">Temperature (°F)</string>
+    <string name="temperature">Temperature (°C)</string>
     <string name="ultraviolet">Ultraviolet Index</string>
     <string name="visible">Visible Light (lux)</string>
 </resources>
